@@ -1,0 +1,130 @@
+.MainDiv {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    /* overflow-y: scroll; */
+}
+
+.SearchSortFields {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
+    background-color: black;
+    color: white;
+    width: 100%;
+    background-color: rgb(31, 30, 29);
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 35%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .SearchSortFields.responsive .SortFields {
+        width: 630px;
+    }
+}
+/* -----------------SearchIcon------------ */
+.searchIcon{
+    position: absolute;
+    top: 28px;
+    right: 314px;
+    font-size: 13px;
+    color: black;
+}
+
+.SearchField {
+    width: 380px;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.SearchField input{
+    width: 291px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 9px;
+    padding-left: 31px;
+    border: none;
+}
+
+.SortFields{
+    display: flex;
+    width: 630px;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.SortFields button{
+    color: black;
+    margin-left: 11px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    width: 111px;
+}
+
+.SortFields h3{
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+button {
+    width: 80px;
+    font-size: 14px;
+}
+
+/* ----------------------------------------- */
+.Games {
+    background-color: bisque;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 100%;
+    color: white;
+    display: flex;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+}
+
+.GamesCollapsed{
+    background-color: bisque;
+    width: 106%;
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    margin-left: -70px;
+    padding: 0;
+    max-width: 109%;
+    max-height: 100%;
+    color: white;
+    display: flex;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+}
+
+/* ----------------------------------------- */
+
+/* -------------------------------- Sidebar  */
+.sideNavbar{
+    background-color: #0056b3;
+    margin-bottom: -60px;
+}
+
+
+.mainGames{
+    background-color: rebeccapurple;
+    width: 100%;
+}

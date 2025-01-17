@@ -1,0 +1,214 @@
+.ProfileContainer {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    margin: 5px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #b6f7ff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    scrollbar-width: thin;
+  }
+
+  .ProfileContainerHeaderText{
+    display: flex;
+    margin-top: -7px;
+    text-align: center;
+    color: #444;
+  }
+
+  /* ----------------------------Message Popup-------------- */
+
+  /* Popups */
+.successPopup,
+.errorPopup {
+  position: fixed;
+  top: 60px;
+  /* right: 550px; */
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  z-index: 1000;
+  font-size: 14px;
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.successPopup {
+  background-color: #28a745;
+}
+
+.errorPopup {
+  background-color: #dc3545;
+}
+
+/* Animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+  .UserDetailsBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 1000px;
+    /* overflow-y: scroll; */
+    scrollbar-width: thin;
+  }
+
+  .ProfileImageInfoCnt{
+    display: flex;
+    gap: 15px;
+  }
+
+  .ProfileUserInfo{
+
+  }
+  
+  .ProfileImageContainer {
+    text-align: center;
+    background: round;
+    width: 112em;
+    border-radius: 5px;
+  }
+  
+  .ProfileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: scale-down;
+    border: 2px solid #ddd;
+    margin-bottom: 31px;
+    margin-top: 80px;
+  }
+
+  .ProFileImageInputs{
+    display: flex;
+    margin-top:30px;
+  }
+
+  .ProfileImageLabel {
+    background-color: #288af4;
+    padding: 5px 10px;
+    margin-left: 10px;
+    width: 112px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ProfileBgImageLabel{
+    background-color: #288af4;
+    padding: 5px 10px;
+    margin-left: -11px;
+    width: 138px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+  }
+  .ProfileBgImageLabel:hover{
+    background-color: #0056b3;
+  }
+
+  .ProfileImageLabel:hover{
+    background-color: #0056b3;
+  }
+
+  /* .ProfileImageName, .ProfileBackgroundImageName{
+    background-color: #000000ab;
+    color: white;
+    font-weight: bold;
+    border: none;
+  } */
+  
+  .UserInfo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .FormRow {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%;
+  }
+  
+  .inputFields {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 14px;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: #24a0ed;
+    outline: none;
+  }
+
+  .formSubmitButton{
+    padding: 10px 20px;
+    margin-left: 153px;
+    margin-right: 125px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 116px;
+  }
+
+  .formVerifyButton{
+    width: 141px;
+    margin-top: 10px;
+    margin-left: 122px;
+  }
+
+  .formSubmitButton, .cancelPasswordButton, .resetPasswordSaveButton, .formVerifyButton {
+    padding: 10px 20px;
+    background-color: #288af4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .formSubmitButton:hover, .resetPasswordSaveButton:hover, .formVerifyButton:hover {
+    background-color: #005ec2;
+    color: white;
+  }
+  
+  .ResetPasswordSection {
+    margin-top: 20px;
+    width: 32%;
+    margin-left: 400px;
+  }
+  
+  .ResetPasswordSection h4 {
+    color: #444;
+  }
+  
+  .resetPasswordSaveButton {
+    margin-top: 10px;
+    margin-left: 17px;
+    width: 86px;
+  }
+  .cancelPasswordButton{
+    background-color: #767676;
+  }
+  .cancelPasswordButton:hover{
+    background-color: #ff9191;
+    color: white;
+  }

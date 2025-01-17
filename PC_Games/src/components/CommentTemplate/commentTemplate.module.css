@@ -1,0 +1,145 @@
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.commentBox {
+    width: 96%;
+    min-height: 107px;
+    max-height: 178px;
+    background-color: white;
+    color: black;
+    margin-top: 10px;
+    border-radius: 10px;
+    margin-left: 7px;
+    padding-left: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease; /* Apply fade-in animation */
+}
+
+
+.commentBox:hover {
+    transform: translateY(-3px); /* Lift slightly on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.commentUpdateSection {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-right: 11px;
+    margin-top:3px;
+}
+
+.commentUpdateSection .MuiSvgIcon-root {
+    font-size: 23px;
+    color: #888; /* Neutral gray */
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.commentUpdateSection .MuiSvgIcon-root:hover {
+    color: #000; /* Darker gray on hover */
+    transform: scale(1.2); /* Slight enlarge effect */
+}
+.commentUpdateSectionUserName{
+    color: #167a24;
+    background-color: #c9c9c9;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    height: 18px;
+    padding: 5px;
+}
+
+.commentUpdateEditIcon , .commentUpdateDeleteIcon{
+    color: #848484 ;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.commentUpdateEditIcon:hover{
+    background-color: #c5f3ff;
+    color: #848484;
+}
+.commentUpdateDeleteIcon:hover{
+    background-color: #ffc5c5;
+    color: #848484;
+}
+
+.commentSection {
+    margin-bottom: 10px;
+    background-color: #f0f8ff; /* Light blue for textarea */
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 12px;
+    margin-right: 10px;
+    overflow: auto;
+    scrollbar-width: thin;
+    max-height: 115px;
+}
+
+.commentSection textarea {
+    width: 100%;
+    min-height: 80px;
+    max-height: 90px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    font-size: 14px;
+    padding: 10px;
+    color: #333;
+    background-color: #fafafa;
+    scrollbar-width: none;
+}
+
+.commentSection textarea:focus {
+    outline: none;
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Subtle blue glow */
+}
+
+.commentSaveButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-right: 15px;
+    margin-bottom: 5px;
+}
+
+.commentSaveButtons button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.commentSaveButtons button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight enlarge effect */
+}
+
+button {
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+/* button:hover {
+    background-color: #e0e0e0;
+    color: black;
+} */

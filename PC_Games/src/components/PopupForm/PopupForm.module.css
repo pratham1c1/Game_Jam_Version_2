@@ -1,0 +1,174 @@
+/* Popup Container */
+.popupDiv {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 950px;
+    /* max-height: 600px;
+    overflow-y: auto; */
+}
+
+.closeButton {
+    color: red;
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+}
+
+/* Flex Container */
+.formContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Left Section */
+.leftSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.previewContainer {
+    width: 568px;
+    height: 250px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f8f8f8;
+}
+
+.previewContainerHalf {
+    width: 284px;
+    /* Half of 568px */
+    height: 250px;
+    /* Half of 250px */
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f8f8f8;
+}
+
+.imagePreview {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Right Section */
+.rightSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formTextarea {
+    resize: vertical;
+    overflow-y: auto;
+    min-height: 100px;
+    max-height: 200px;
+}
+
+/* General Input and Textarea Styles */
+
+.formInput,
+.formTextarea {
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    /* Faint background color */
+    border: none;
+    /* Remove borders */
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    /* Remove default focus outline */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle inner shadow */
+}
+
+/* Hover Effect */
+
+.formInput:hover,
+.formTextarea:hover {
+    background-color: #f1f1f1;
+    /* Slightly darker background on hover */
+}
+
+/* Disabled Input Fields */
+
+.formInput[disabled],
+.formTextarea[disabled] {
+    background-color: #e9ecef;
+    /* Light gray background for disabled fields */
+    color: #6c757d;
+    /* Gray text */
+    cursor: not-allowed;
+    /* Indicate non-interactive state */
+}
+
+.submitButton {
+    border-radius: 5px;
+    margin-left: 400px;
+    background-color: #24a0ed;
+    color: white;
+}
+
+.genreContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.selectedGenres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.genreBadge {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 5px 5px 0 0;
+}
+
+.genreBadge:hover {
+
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+.genreList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.genreOption {
+    background-color: #e8f0fe;
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 5px 5px 0 0;
+}
+
+.genreOption:hover {
+    background-color: #cde4fd;
+    color: #0056b3;
+}

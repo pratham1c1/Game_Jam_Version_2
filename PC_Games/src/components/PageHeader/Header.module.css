@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: whitesmoke;
+    position: relative;
+    left: -50px;
+    margin-top: 5px;
+    display: flex;
+  }
+  .siteLogo{
+    height: 15em;
+      padding: 0.5em;
+      will-change: filter;
+      transition: filter 300ms;
+      position: absolute;
+      top: -60px;
+      left: 0px;
+  }
+  .topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 7px;
+    margin-left: 4px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  .icon {
+    display: none;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .topnav.responsive .loginButton{
+      display: block;
+      position: relative;
+          top: -181px;
+          left: 80px;
+          font-size: 21px;
+          margin-bottom: 13px;
+          width: 224px;
+    }
+    .topnav.responsive {
+      position: relative;
+      left: 0px;
+      top: 306px;
+      width: 100%;
+      height: 533px;
+      border: 1px solid #d55d13;
+      border-radius: 3px;
+      backdrop-filter: blur(9px);
+      background: scroll;
+      padding-top: 45px;
+    }
+    .body{
+      overflow-y: hidden;
+    }
+    .Navibar .icon {
+      position: absolute;
+      right: 37px;
+      top: 16px;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: grid;
+      text-align: left;
+      width: 264px;
+      align-items: center;
+      margin-bottom: 4px;
+      margin-left: 83px;
+      margin-top: 6px;
+    }
+    .topnav.responsive .lineDivider{
+      display: block;
+      position: relative;
+      left: 254px;
+      top: -177px;
+      height: 157px;
+    }
+    .topnav.responsive .line{
+      display: block;
+      height: 0px;
+      width: 0px;
+    }
+  
+    .topnav a {display: none;}
+    a.icon {
+      float: right;
+      display: block;
+    }
+    .topnav .loginButton{
+      display: none;
+    }
+    .topnav .line{
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 900px) {
+    .topnav.responsive .loginButton{
+      display: block;
+      position: relative;
+      top: -177px;
+      left: 50px;
+      font-size: 19px;
+      margin-bottom: 13px;
+      width: 158px;
+    }
+    .topnav.responsive {
+      position: relative;
+      left: 0px;
+      top: 306px;
+      width: 100%;
+      height: 533px;
+    }
+    .Navibar .icon {
+      position: absolute;
+      right: 37px;
+      top: 16px;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: grid;
+      text-align: left;
+      width: 200px;
+      align-items: center;
+      margin-bottom: 4px;
+      margin-left: 25px;
+      margin-top: 6px;
+    }
+    .topnav.responsive .lineDivider{
+      display: block;
+      position: relative;
+      left: 189px;
+      top: -177px;
+      height: 157px;
+    }
+    .topnav.responsive .line{
+      display: block;
+      height: 0px;
+      width: 0px;
+    }
+  
+  }
+  
+  /* ------------------------------- */
+  
+  .lineDivider{
+    border-left: 1px solid black;
+    height: 30px;
+  }
+  
+  a.line:hover {
+    background-color: whitesmoke;
+  }
+  
+  
+  .Navibar{
+    display: flex;
+    width: 500px;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background-color: whitesmoke;
+    height: 86px;
+    position: sticky;
+    top: 0px;
+  }
+  
+  .loginButton{
+    background-color: #369096;
+    margin-left: 10px;
+    font-size: 18px;
+    color: white;
+    border: none;
+  }
+  .signupButton{
+    background-color: #d55d13;
+    width: 108px;
+  }
+  
+  .signupButton1:hover{
+    background-color: #d68857;
+    color: black;
+  }
+  
+  .loginButton1:hover{
+    background-color: #7cbbbf;
+    color: black;
+  }
+
+  .PagePaths{
+
+  }
+
+  .HomeButtons{
+    display: flex;
+    align-items: center;
+  }
+  
+  
