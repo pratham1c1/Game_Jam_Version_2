@@ -13,6 +13,7 @@ import GameCards from './components/GameTemplate/GameCards';
 import PopupForm from './components/PopupForm/PopupForm';
 import CommentTemplate from './components/CommentTemplate/commentTemplate';
 import UserProfile from './pages/ProfilePage/UserProfile';
+import HomePage from './pages/HomePage/HomePage';
 
 
 
@@ -24,7 +25,7 @@ function App_test() {
       <div className='AppPage'>
         <Router>
           <Routes>
-            <Route path="/" element={<UserProfile />} />
+            <Route path="/" element={<HomePage />} />
           </Routes>
         </Router>
       </div>

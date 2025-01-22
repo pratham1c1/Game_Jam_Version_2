@@ -159,7 +159,10 @@ function SideNav(props) {
                 isExpanded ? styles.expanded : styles.collapsed
             }`}
         >
-            <div className={styles.header}>
+            <div className={`${styles.header} ${
+                    isExpanded ? styles.expanded : styles.collapsed
+                }`}
+            >
                 <h3>{isExpanded ? "Filters" : ""}</h3>
                 <button className={styles.hamburger} onClick={toggleSideNav}>
                     <i className="fa fa-bars"></i>

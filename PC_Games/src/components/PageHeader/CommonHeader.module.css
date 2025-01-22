@@ -18,7 +18,7 @@ body {
     transition: filter 300ms;
     position: absolute;
     top: -25px;
-    left: -52px;
+    left: -15px;
   }
   .topnav a {
     float: left;
@@ -183,7 +183,7 @@ body {
     height: 50px;
     position: sticky;
     top: 0px;
-    z-index: 10;
+    z-index: 1;
   }
   
   .loginButton{

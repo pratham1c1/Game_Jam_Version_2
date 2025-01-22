@@ -9,41 +9,65 @@
     color: white;
     overflow-x: hidden;
     transition: width 0.3s ease; /* Smooth open/close effect */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); */
+    position: relative;
     z-index: 1000;
 }
 
 .sideNav.expanded {
     width: 250px;
+    background-color: #2d436c;
+    color: white;
+    position: relative;
+    top: -50px;
+    height: 632px;
 }
 
 .sideNav.collapsed {
-    width: 100px;
     background-color: #f0f0f0;
+    width: 33px;
+    height: 32px;
+    overflow: hidden;
 }
 
+
+
 /* Header section */
+
 .header {
     display: flex;
     align-items: end;
     justify-content: space-between;
-    background-color: #1f1e1d;
+    /* background-color: #1f1e1d; */
     font-size: 14px;
     position: sticky;
     top: 0;
     z-index: 1001;
-    height: 62px;
-    padding-left: 10px;
-    margin-bottom: 30px;
+    height: 32px;
+}
+
+
+.header.collapsed {
+    
+    /* padding-left: 10px;
+    margin-bottom: 30px; */
+}
+
+.header.expanded{
+    margin-top: 17px;
+    margin-left: 10px;
 }
 
 /* Hamburger button */
 .hamburger {
     background: none;
     border: none;
-    color: white;
+    color: black;
     font-size: 18px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -109,6 +133,7 @@
     font-size: 18px;
     color: #f44336; /* Red color for delete icon */
     margin-left: 10px; /* Add spacing between Go button and trash icon */
+    margin-right: 8px;
     cursor: pointer;
     transition: color 0.3s ease;
 }

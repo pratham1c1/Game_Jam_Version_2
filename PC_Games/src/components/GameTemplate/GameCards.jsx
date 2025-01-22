@@ -241,7 +241,8 @@ function GameCards(props) {
               style={{
                 opacity: getOpacity("dev"),
                 left: "0px",
-                width:"0px"
+                width:"0px",
+                display:DashboardFlag?"flex":"none"
               }}
               onClick={() => handleDivClick("dev")}
             >
@@ -254,7 +255,8 @@ function GameCards(props) {
               style={{
                 opacity: getOpacity("publish"),
                 left: "0px",
-                width:"0px"
+                width:"0px",
+                display:DashboardFlag?"flex":"none"
               }}
               onClick={() => handleDivClick("publish")}
             >

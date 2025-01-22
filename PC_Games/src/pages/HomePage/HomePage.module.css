@@ -1,0 +1,291 @@
+.MainDiv {
+    position: relative;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    /* overflow-y: scroll; */
+}
+
+.SearchSortFields {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
+    background-color: black;
+    color: white;
+    width: 100%;
+    background-color: rgb(31, 30, 29);
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: 55px;
+    max-height: 35%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .SearchSortFields.responsive .SortFields {
+        width: 630px;
+    }
+}
+/* -----------------SearchIcon------------ */
+.searchIcon{
+    position: absolute;
+    top: 28px;
+    right: 314px;
+    font-size: 13px;
+    color: black;
+}
+
+.SearchField {
+    width: 380px;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.SearchField input{
+    width: 291px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 9px;
+    padding-left: 31px;
+    border: none;
+}
+
+.SortFields{
+    display: flex;
+    width: 630px;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.SortFields button{
+    color: black;
+    margin-left: 11px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    width: 111px;
+}
+
+.SortFields h3{
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+button {
+    width: 80px;
+    font-size: 14px;
+}
+
+/* ----------------------------------------- */
+.Games {
+    background-color: bisque;
+    width: 1283px;
+    background-color: rgb(240, 240, 240);
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll;
+    flex-wrap: wrap; */
+}
+
+.GamesExpanded{
+    width: 1280px;
+    height: 527px;
+}
+
+.GamesCollapsed{
+    background-color: bisque;
+    width: 1280px;
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    padding: 0;
+    max-width: 109%;
+    max-height: 100%;
+    color: white;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+}
+
+/* ----------------------------------------- */
+
+/* -------------------------------- Sidebar  */
+.sideNavbar{
+    background-color: #2d436c;
+    /* margin-bottom: -60px; */
+    height: 122%;
+    position: relative;
+    top: -40px;
+    z-index: 3;
+}
+
+.sideNavbar.expanded {
+    top:-43px;
+}
+
+
+.mainGames{
+    background-color: rebeccapurple;
+    width: 1300px;
+    position: relative;
+    left: -30px;
+}
+
+/* -------------------------------- */
+/* -----------new Release Games ------------- */
+.newReleaseGamesDiv{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newReleaseGames{
+    width: 95%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    height: 500px;
+}
+
+.newReleaseGamesDivActionButton button{
+    margin-top: 5px;
+}
+
+.OtherGames{
+    width: 100%;
+    background-color: #7b89a4;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----------------------FeatureGamesDiv--------------------- */
+/* Main Container */
+.featuredGamesDiv {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9; /* Light gray */
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+  }
+  
+  /* Game Information Section */
+  .featuredGamesInfo {
+    display: flex;
+    gap: 15px;
+    flex-direction: row; /* Ensure horizontal alignment */
+    width: 100%;
+  }
+  
+  /* Game Cover Image */
+  .featuredGamesImageDiv {
+    width: 40%;
+    height: 380px;
+    background-color: #e0f7fa; /* Light aqua */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .featuredGameImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* Game Details Section */
+  .featuredGamesDetails {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fefefe; /* White */
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .featuredGameTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Dark gray */
+    margin-bottom: -21px;
+  }
+  
+  .featuredGameDate {
+    font-size: 14px;
+    color: #666; /* Medium gray */
+    margin-bottom: -30px;
+  }
+  
+  .featuredGameRating {
+    display: flex;
+    align-items: center;
+    margin-bottom: -40px;
+  }
+  
+  .featuredGameRatingStars i {
+    font-size: 18px;
+    margin-right: 4px;
+  }
+  
+  .featuredGameMetrics {
+    font-size: 14px;
+    color: #444; /* Darker gray */
+    margin-bottom: 15px;
+  }
+  
+  .featuredGameDescription {
+    font-size: 14px;
+    color: #333; /* Dark gray */
+    line-height: 1.5;
+  }
+  
+  /* Action Buttons */
+  .featuredGamesDivActionButton {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .featuredGamesButton {
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .featuredGamesButton:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: scale(1.1);
+  }
+  
+  
