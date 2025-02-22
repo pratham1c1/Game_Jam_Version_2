@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Navigate, useNavigate, useLocation, useBlocker } from "react-router-dom";
 import styles from './HomePage.module.css'; // Import the CSS module
 import axios from "axios";
 
@@ -26,6 +26,7 @@ function HomePage(props) {
         beforeDate: null,
         searchQuery: "",
     });
+    const [searchFlag, setSearchFlag] = useState(false);
     const [currentGameIndex, setCurrentGameIndex] = useState(0); // Track current game index
 
     
@@ -80,6 +81,23 @@ function HomePage(props) {
         }
     };
 
+    const sortGames = (games, option) => {
+        const {field, order} = option;
+        return [...games].sort((a,b) => {
+            const valA = a[field];
+            const valB = b[field];
+            if (valA > valB) return order === "asc" ? 1 : -1;
+            if (valA < valB) return order === "asc" ? -1 : 1;
+            return 0;
+        });
+    };
+    const handleSortChange = (field) => {
+        setSortOption((prevOptions) => ({
+            field,
+            order: prevOptions.field === field && prevOptions.order === "asc" ? "desc" : "asc",
+        }));
+    };
+
     const handleAddGenre = (genre) => {
         if(genre){
         setFilterCriteria((prev) => ({
@@ -116,6 +134,11 @@ function HomePage(props) {
         setSearchQuery(query);
     };
     
+    const handleSearchClick = () => {
+        setSearchFlag((prev) => !prev);
+    };
+
+
     const handleRemoveGenre = (genre) => {
         setFilterCriteria((prev) => ({
             ...prev,
@@ -146,17 +169,21 @@ function HomePage(props) {
             searchQuery: "",
         });
         console.log("Clearing filters in BrowseGames ...");
-    }   
+    };
 
-    const newReleaseGamesNextClick = () => {
-        const scrollDiv = document.getElementById('newReleaseGames');
+    const newReleaseGamesNextClick = (id) => {
+        if(id){
+        const scrollDiv = document.getElementById(id);
         scrollDiv.scrollLeft += 300;
-    }
+        }
+    };
 
-    const newReleaseGamesPrevClick = () => {
-        const scrollDiv = document.getElementById('newReleaseGames');
+    const newReleaseGamesPrevClick = (id) => {
+        if(id){
+        const scrollDiv = document.getElementById(id);
         scrollDiv.scrollLeft -= 300;
-    }
+        }
+    };
 
     const prevGame = () => {
         if(currentGameIndex != 0){
@@ -167,13 +194,28 @@ function HomePage(props) {
       const nextGame = () => {
         setCurrentGameIndex((prevIndex) => (prevIndex < games.length - 1 ? prevIndex + 1 : 0));
       };
+
+      const filterGame = (games, options) => {
+        const {field , value} = options;
+        return games.filter((game) => {
+            if(game.gamePrice !== value)
+                return false;
+            return true;
+        });
+      };
     
       const currentGame = games[currentGameIndex];
+      const newReleasedGamesList = sortGames(games,{ field: "gameDownloadCount", order: "asc" });
+      const trendingGamesList = sortGames(games, {field : "gameRating" , order: "desc"});
+      const popularGamesList = sortGames(games, {field : "gameDownloadCount" , order: "desc"});
+      const freeGamesList = filterGame(games, {field : "gamePrice" , value: 0});
+      
 
 
     useEffect(() => {
         console.log("Fetching games to browse...");
         fetchGames();
+        console.log("New released games : " , newReleasedGamesList);
     }, []);
 
     useEffect(() => {
@@ -207,22 +249,13 @@ function HomePage(props) {
                     />
                 </div>
                 <div className={styles.mainGames}>
-                    {/* <div className={styles.SearchSortFields}>
-                        <div className={styles.SortFields}>
-                            <h3>Sort by</h3>
-                            <button onClick={() => handleSortChange("gameRating")}>Top Rated</button>
-                            <button onClick={() => handleSortChange("gameIncome")}>Top Seller</button>
-                            <button onClick={() => handleSortChange("gameDownloadCount")}>Most Popular</button>
-                            <button onClick={() => handleSortChange("gameCreateDate")}>Most Recent</button>
-                        </div>
-                        <div className={styles.SearchField}>
-                            <form action="/action_page.php">
-                                <input onChange={(e)=>{handleSearchQueryUpdate(e.target.value)}} value={searchQuery} type="text" placeholder="Search.." name="search" />
-                                    <i className={`fa fa-search ${styles.searchIcon}`}></i>
-                            </form>
-                        </div>
-                    </div> */}
                     <div id="mainGameDiv" className={`${styles.Games} ${toggleSideNavbar ? styles.GamesExpanded : styles.GamesCollapsed}`}>
+                        <div id="searchDiv" className={searchFlag?styles.searchGamesDivAfter:styles.searchGamesDivBefore}>
+                            <form id="searchFormId" action="/action_page.php">
+                                <input className={styles.searchGamesDivInput} onChange={(e) => { handleSearchQueryUpdate(e.target.value) }} value={searchQuery} type="text" placeholder="Search.." name="search" />
+                            </form>
+                            <i onClick={handleSearchClick} className={`fa fa-search ${searchFlag ? styles.searchIconBefore : styles.searchIconAfter}`}></i>
+                        </div>
                         <div className={styles.featuredGamesDiv}>
                             <div id="featuredGamesInfo" className={styles.featuredGamesInfo}>
                                 {/* Game Cover Image */}
@@ -275,45 +308,148 @@ function HomePage(props) {
                         </div>
                         <div className={styles.OtherGames}>
                             <div className={styles.gameTypeHeader}><h2>New Released</h2></div>
-                            <div className={styles.newReleaseGamesDiv}>
-                                <div id="newReleaseGames" className={styles.newReleaseGames}>
-                                    {games.length > 0 ? (
-                                        games.map((game) => (
-                                            <GameCards
-                                                key={game.gameId}
-                                                gameImage={game.gameCoverImageUrl}
-                                                gameNameValue={game.gameName}
-                                                gameAuthorName={game.userName}
-                                                gameGenre={game.gameGenre}
-                                                gameDownloadCount={game.gameDownloadCount}
-                                                gameRating={game.gameRating}
-                                                gamePlatform={game.gamePlatform}
-                                                gameLikeCount={game.gameLikeCount}
+                                <div className={styles.newReleaseGamesDiv}>
+                                    <div id="newReleaseGames" className={styles.newReleaseGames}>
+                                        {newReleasedGamesList.length > 0 ? (
+                                            newReleasedGamesList.map((game) => (
+                                                <GameCards
+                                                    key={game.gameId}
+                                                    gameImage={game.gameCoverImageUrl}
+                                                    gameNameValue={game.gameName}
+                                                    gameAuthorName={game.userName}
+                                                    gameGenre={game.gameGenre}
+                                                    gameDownloadCount={game.gameDownloadCount}
+                                                    gameRating={game.gameRating}
+                                                    gamePlatform={game.gamePlatform}
+                                                    gameLikeCount={game.gameLikeCount}
 
-                                                savedGameFlag={userLikedGameList.includes(game.gameName)}
-                                                savedGameFlagDisplay={loggedInUserName != game.userName}
-                                                setGameNameRedirFlag={setGameNameRedirFlag}
-                                                setAuthorNameRedirFlag={setAuthorNameRedirFlag}
-                                                DashboardFlag={false}
-                                                cancleFlag={false}
-                                            />
-                                        ))
-                                    )
-                                        : (
-                                            <p style={{ color: "black" }}>No games available.</p>
+                                                    savedGameFlag={userLikedGameList.includes(game.gameName)}
+                                                    savedGameFlagDisplay={loggedInUserName != game.userName}
+                                                    setGameNameRedirFlag={setGameNameRedirFlag}
+                                                    setAuthorNameRedirFlag={setAuthorNameRedirFlag}
+                                                    DashboardFlag={false}
+                                                    cancleFlag={false}
+                                                />
+                                            ))
                                         )
-                                    }
+                                            : (
+                                                <p style={{ color: "black" }}>No games available.</p>
+                                            )
+                                        }
+                                    </div>
+                                    <div className={styles.newReleaseGamesDivActionButton}>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesPrevClick("newReleaseGames")}>❮</button>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesNextClick("newReleaseGames")}>❯</button>
+                                    </div>
                                 </div>
-                                <div className={styles.newReleaseGamesDivActionButton}>
-                                    <button className={styles.featuredGamesButton} onClick={newReleaseGamesPrevClick}>❮</button>
-                                    <button className={styles.featuredGamesButton} onClick={newReleaseGamesNextClick}>❯</button>
-                                </div>
-                            </div>
                             <div className={styles.gameTypeHeader}><h2>Trending</h2></div>
+                                <div className={styles.newReleaseGamesDiv}>
+                                    <div id="trendingGames" className={styles.newReleaseGames}>
+                                            {trendingGamesList.length > 0 ? (
+                                                trendingGamesList.map((game) => (
+                                                    <GameCards
+                                                        key={game.gameId}
+                                                        gameImage={game.gameCoverImageUrl}
+                                                        gameNameValue={game.gameName}
+                                                        gameAuthorName={game.userName}
+                                                        gameGenre={game.gameGenre}
+                                                        gameDownloadCount={game.gameDownloadCount}
+                                                        gameRating={game.gameRating}
+                                                        gamePlatform={game.gamePlatform}
+                                                        gameLikeCount={game.gameLikeCount}
+
+                                                        savedGameFlag={userLikedGameList.includes(game.gameName)}
+                                                        savedGameFlagDisplay={loggedInUserName != game.userName}
+                                                        setGameNameRedirFlag={setGameNameRedirFlag}
+                                                        setAuthorNameRedirFlag={setAuthorNameRedirFlag}
+                                                        DashboardFlag={false}
+                                                        cancleFlag={false}
+                                                    />
+                                                ))
+                                            )
+                                                : (
+                                                    <p style={{ color: "black" }}>No games available.</p>
+                                                )
+                                            }
+                                    
+                                    </div>
+                                    <div className={styles.newReleaseGamesDivActionButton}>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesPrevClick("trendingGames")}>❮</button>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesNextClick("trendingGames")}>❯</button>
+                                    </div>
+                                </div>
                             <div className={styles.gameTypeHeader}><h2>Popular Picks</h2></div>
-                            <div className={styles.gameTypeHeader}><h2>Community Favorites</h2></div>
-                            <div className={styles.gameTypeHeader}><h2>Game Jams Winners</h2></div>
+                                <div className={styles.newReleaseGamesDiv}>
+                                    <div id="popularGames" className={styles.newReleaseGames}>
+                                                {popularGamesList.length > 0 ? (
+                                                    popularGamesList.map((game) => (
+                                                        <GameCards
+                                                            key={game.gameId}
+                                                            gameImage={game.gameCoverImageUrl}
+                                                            gameNameValue={game.gameName}
+                                                            gameAuthorName={game.userName}
+                                                            gameGenre={game.gameGenre}
+                                                            gameDownloadCount={game.gameDownloadCount}
+                                                            gameRating={game.gameRating}
+                                                            gamePlatform={game.gamePlatform}
+                                                            gameLikeCount={game.gameLikeCount}
+
+                                                            savedGameFlag={userLikedGameList.includes(game.gameName)}
+                                                            savedGameFlagDisplay={loggedInUserName != game.userName}
+                                                            setGameNameRedirFlag={setGameNameRedirFlag}
+                                                            setAuthorNameRedirFlag={setAuthorNameRedirFlag}
+                                                            DashboardFlag={false}
+                                                            cancleFlag={false}
+                                                        />
+                                                    ))
+                                                )
+                                                    : (
+                                                        <p style={{ color: "black" }}>No games available.</p>
+                                                    )
+                                                }
+                                    </div>
+                                    <div className={styles.newReleaseGamesDivActionButton}>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesPrevClick("popularGames")} >❮</button>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesPrevClick("popularGames")} >❯</button>
+                                    </div>
+                                </div>
+                            {/* <div className={styles.gameTypeHeader}><h2>Community Favorites</h2></div>
+                            <div className={styles.gameTypeHeader}><h2>Game Jams Winners</h2></div> */}
                             <div className={styles.gameTypeHeader}><h2>Free to play</h2></div>
+                                <div className={styles.newReleaseGamesDiv}>
+                                    <div id="freeGames" className={styles.newReleaseGames}>
+                                                {freeGamesList.length > 0 ? (
+                                                    freeGamesList.map((game) => (
+                                                        <GameCards
+                                                            key={game.gameId}
+                                                            gameImage={game.gameCoverImageUrl}
+                                                            gameNameValue={game.gameName}
+                                                            gameAuthorName={game.userName}
+                                                            gameGenre={game.gameGenre}
+                                                            gameDownloadCount={game.gameDownloadCount}
+                                                            gameRating={game.gameRating}
+                                                            gamePlatform={game.gamePlatform}
+                                                            gameLikeCount={game.gameLikeCount}
+
+                                                            savedGameFlag={userLikedGameList.includes(game.gameName)}
+                                                            savedGameFlagDisplay={loggedInUserName != game.userName}
+                                                            setGameNameRedirFlag={setGameNameRedirFlag}
+                                                            setAuthorNameRedirFlag={setAuthorNameRedirFlag}
+                                                            DashboardFlag={false}
+                                                            cancleFlag={false}
+                                                        />
+                                                    ))
+                                                )
+                                                    : (
+                                                        <p style={{ color: "black" }}>No games available.</p>
+                                                    )
+                                                }
+                                    </div>
+                                    <div className={styles.newReleaseGamesDivActionButton}>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesPrevClick("freeGames")} >❮</button>
+                                        <button className={styles.featuredGamesButton} onClick={() => newReleaseGamesPrevClick("freeGames")} >❯</button>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

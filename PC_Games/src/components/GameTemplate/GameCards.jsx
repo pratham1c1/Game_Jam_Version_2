@@ -203,7 +203,8 @@ function GameCards(props) {
           <BookmarkAddIcon
           style={{
             color: savedGameFlag? "#048348" : "#777777",
-            display: savedGameFlagDisplay?"flex":"none"
+            display: savedGameFlagDisplay?"flex":"none" ,
+            top:"0px"
           }}
           className={styles.gameLikedIcon}
           onClick={() => handleLikeGame(gameNameValue)}
