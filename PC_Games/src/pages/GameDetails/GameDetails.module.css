@@ -137,12 +137,14 @@
 .ImageInputFields {
     margin : 15px 20px;
     color: #0eadff;
+    background-color: #0000008a;
 }
 
 /* ****************************** */
 .GameDetailsInfo {
     background-color: #090909bd; /* Light yellowish background */
     width: 50%;
+    height: 628px;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -155,7 +157,7 @@
     display: flex;
     align-items: center; /* Align button and text vertically */
     justify-content: flex-start; /* Add spacing between button and name */
-    margin-bottom: 10px;
+    margin-top: 36px;
 }
 
 .GameHeader button {
@@ -194,7 +196,7 @@
 
 .ScrollableTextArea textarea {
     width: 97%;
-    height: 100px;
+    height: 163px;
     resize: none; /* Disable resizing */
     overflow-y: scroll; /* Add scroll for overflow */
     padding: 10px;

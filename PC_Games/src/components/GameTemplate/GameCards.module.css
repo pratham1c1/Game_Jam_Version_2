@@ -1,5 +1,5 @@
 .card {
-    background-color: #ffffff;
+    background: radial-gradient(circle, rgb(255 255 255) 12%, #b08af2 100%);
     width: 255px;
     height: 400px;
     border-radius: 10px;
@@ -52,6 +52,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    background: radial-gradient(circle, rgb(255 255 255) 12%, #b08af2 100%);
 }
 
 .gameNumbers {
@@ -90,7 +91,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    left: -10px;
+    left: -5px;
 }
 .gameNameValues {
     display: flex;
@@ -214,6 +215,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .clearIcon {
     font-size: 18px;
     color: #f44336; /* Red color for delete icon */

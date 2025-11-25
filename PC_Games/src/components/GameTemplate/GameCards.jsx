@@ -3,17 +3,20 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./GameCards.module.css";
 import { unstable_setDevServerHooks } from "react-router-dom";
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
+import Tooltip from '@mui/material/Tooltip';
 
 function GameCards(props) {
+  const gameId = props?.gameId !== undefined?props.gameId:1;
   const gameImage = props?.gameImage !== undefined ?props.gameImage:"/check_image.jpg"; // Default image
   const gameNameValue = props?.gameNameValue !== undefined ?props.gameNameValue:"New Game";
   const gameAuthorName = props?.gameAuthorName !== undefined ?props.gameAuthorName : "PC";
   const loggedInUser = props?.loggedInUser !== undefined ?props.loggedInUser : "PC";
   const gameGenre = props?.gameGenre !== undefined ?props.gameGenre:["Action", "Horror", "Adventure"];
   const gamePlatform = (props?.gamePlatform !== undefined && props?.gamePlatform.length !== 0) ?props.gamePlatform: ["Windows", "macOS", "Linux"];
-  const gameLikeCount = props?.gameLikeCount !== undefined ?props.gameLikeCount:100;
+  const [ gameLikeCount, setGameLikeCount] = useState(props?.gameLikeCount !== undefined ?props.gameLikeCount:100);
+  const [isLiked, setIsLiked] = useState(props?.initialIsLiked!== undefined ?props.initialIsLiked:false);
   const gameRating = props?.gameRating !== undefined ?props.gameRating:4.5;
-  const gameDownloadCount = props?.gameDownloadCount !== undefined ?props.gameDownloadCount: 450;
+  const gameDownloadCount = props?.gameDownloadCount !== undefined ?props.gameDownloadCount: 400;
   const gameDescription = props?.gameDescription !== undefined ?props.gameDescription:"This is a description";
   const gameFirstSs = props?.gameFirstSs !== undefined ?props.gameFirstSs:null;
   const gameSecondSs = props?.gameSecondSs !== undefined ?props.gameSecondSs:null;
@@ -55,6 +58,15 @@ function GameCards(props) {
   // Like and Dislike functionality
   const handleLike = () => {
     console.log("Liked the game:", gameNameValue);
+    if(!isLiked){
+      setGameLikeCount(gameLikeCount+1);
+      setIsLiked(true);
+    }
+    else{
+      setGameLikeCount(gameLikeCount-1);
+      setIsLiked(false);
+    }
+      
   };
 
   const handleDownload = () => {
@@ -68,8 +80,8 @@ function GameCards(props) {
 
   const handleClickGameName = async(e) => {
     console.log("Clicked on Game name ... : ");
-    const gameNameClickResult = await axios.put(`http://localhost:8080/api/games/updateGameViewCount/${gameNameValue}`);
-    console.log(gameNameClickResult);
+    // const gameNameClickResult = await axios.put(`http://localhost:8080/api/games/updateGameViewCount/${gameNameValue}`);
+    // console.log(gameNameClickResult);
     setGameNameRedirFlag(e.target.textContent);
   }
 
@@ -172,12 +184,14 @@ function GameCards(props) {
   const handleLikeGame = async(gameNameValue) => {
     console.log(`${gameNameValue} added successfully in Likedgame List.`);
     console.log("gameLikeFlag : " , gameLikeFlag);
+    // To make it unlike
     if(gameLikeFlag){
       document.getElementById(`LikeGameIcon-${gameNameValue}`).style.color = "#777777";
       setGameLikeFlag(false);
       const LikeGameMessage = await axios.put(`http://localhost:8080/api/userGames/removeGameFromUserLikedGames/${loggedInUser}/${gameNameValue}`);
       console.log(LikeGameMessage);
     }
+    // To like the game 
     else{
       document.getElementById(`LikeGameIcon-${gameNameValue}`).style.color = "#048348";
       setGameLikeFlag(true);
@@ -187,8 +201,9 @@ function GameCards(props) {
   }
 
   useEffect(()=>{
+    console.log("In GameCards : ", props);
     setGameLikeFlag(props.savedGameFlag);
-  },[props.savedGameFlag]);
+  },[props.savedGameFlag,gameRating]);
 
   
   return (
@@ -200,25 +215,29 @@ function GameCards(props) {
       >
         {/* Card Image */}
         <div className={styles.card_Image}>
-          <BookmarkAddIcon
-          style={{
-            color: savedGameFlag? "#048348" : "#777777",
-            display: savedGameFlagDisplay?"flex":"none" ,
-            top:"0px"
-          }}
-          className={styles.gameLikedIcon}
-          onClick={() => handleLikeGame(gameNameValue)}
-          id={`LikeGameIcon-${gameNameValue}`}
-          title="Add to favorite"
-          sx={{fontSize:25 , width:20}}
-          viewBox="9 0 7 24"
-          />
+          <Tooltip title="Add to Favorite">
+            <BookmarkAddIcon
+            style={{
+              color: savedGameFlag? "#048348" : "#777777",
+              display: savedGameFlagDisplay?"flex":"none" ,
+              top:"0px"
+            }}
+            className={styles.gameLikedIcon}
+            onClick={() => handleLikeGame(gameNameValue)}
+            id={`LikeGameIcon-${gameNameValue}`}
+            title="Add to favorite"
+            sx={{fontSize:25 , width:20}}
+            viewBox="9 0 7 24"
+            />
+          </Tooltip>
+          <Tooltip title="Delete">
           <i
             style={{ display: DashboardFlag ? "flex" : "none"}}
             className={`fa fa-trash ${styles.clearIcon}`}
             onClick={() => deleteGame(gameNameValue)}
-            title="Clear all filters"
+            // title="Delete"
           ></i>
+          </Tooltip>
           <img onClick={(e) => {handleImageClick(e)}} src={gameImage} alt={gameNameValue} />
           {/* {gameImage} */}
         </div>
@@ -228,7 +247,7 @@ function GameCards(props) {
         
           {/* Likes, Dislikes, and Downloads */}
           <div className={styles.gameNumbers}>
-            <div className={styles.gameLikeDislike}><i className="fa fa-thumbs-up" onClick={handleLike}></i> {gameLikeCount}
+            <div className={styles.gameLikeDislike}><i style={{color : isLiked? "blue" : "#666"}} className="fa fa-thumbs-up" onClick={handleLike}></i> {gameLikeCount}
             </div>
             <div className={styles.gameDownloadsView}><i className="fa fa-download" onClick={handleDownload}></i> {gameDownloadCount}</div>
           </div>

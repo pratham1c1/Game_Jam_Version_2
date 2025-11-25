@@ -21,12 +21,13 @@ function CommonHeader(props) {
 
     const handleClickBrowse = () =>{
         console.log("Navigating to browse page ...");
-        navigate("/BrowsePage");
+        navigate("/BrowseGames");
     }
 
     const handleClickDashboard = () =>{
         console.log("Navigating to own Dashboard page ...");
-        navigate("/DashboardPage",{
+        // navigate("/DashboardPage",{
+        navigate("/",{                  // To got to HomePage
             state:{userName:loggedInUserName , loggedInUserName:loggedInUserName}
         });
     }
@@ -38,7 +39,7 @@ function CommonHeader(props) {
 
     const handleClickProfile = () => {
         console.log("Navigating to Profile page ...");
-        navigate("/profilePage", {
+        navigate("/UserProfile", {
             state:{loggedInUserName:loggedInUserName}
         });
     }

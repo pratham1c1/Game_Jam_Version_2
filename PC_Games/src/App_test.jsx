@@ -14,6 +14,8 @@ import PopupForm from './components/PopupForm/PopupForm';
 import CommentTemplate from './components/CommentTemplate/commentTemplate';
 import UserProfile from './pages/ProfilePage/UserProfile';
 import HomePage from './pages/HomePage/HomePage';
+import SignUp from './pages/SignUpPage/SignUP';
+import Login from './pages/LoginPage/Login';
 
 
 
@@ -25,7 +27,16 @@ function App_test() {
       <div className='AppPage'>
         <Router>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            {/* <Route path="/BrowseGames" element={<BrowseGames />} /> */}
+            {/* <Route path="/" element={<HomePage />} /> */}
+            {/* <Route path="/UserProfile" element={<UserProfile />} /> */}
+            {/* <Route path="/UserGames" element={<UserGames />} /> */}
+            {/* <Route path="/GameDetailsPage" element={<GameDetails />} /> */}
+            {/* <Route path="/Login" element={<Login />} />  */}
+            {/* <Route path="/SignUp" element={<SignUp />} />   */}
+
+            <Route path="/" element={<HomePage />} /> 
+
           </Routes>
         </Router>
       </div>

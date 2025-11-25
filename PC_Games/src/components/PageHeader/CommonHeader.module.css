@@ -5,7 +5,7 @@ body {
   
   .topnav {
     overflow: visible;
-    background-color: whitesmoke;
+    background: linear-gradient(to bottom, #c072f4 24%, black 106%);
     position: relative;
     left: 130px;
     display: flex;
@@ -33,7 +33,7 @@ body {
   }
   
   .topnav a:hover {
-    background-color: #ddd;
+    background-color: #daa2ff;
     color: black;
   }
   
@@ -167,7 +167,9 @@ body {
   }
   
   a.line:hover {
-    background-color: whitesmoke;
+    /* background-color: purple; */
+    background: linear-gradient(to bottom, #ba6bef 30%, black 100%);
+    
   }
   
   
@@ -179,7 +181,7 @@ body {
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    background-color: whitesmoke;
+    background: linear-gradient(to bottom, #c772ff 13%, black 106%);
     height: 50px;
     position: sticky;
     top: 0px;
@@ -209,7 +211,7 @@ body {
   }
 
   .PagePaths{
-
+    
   }
 
   .userProfileName{

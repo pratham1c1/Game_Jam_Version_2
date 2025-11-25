@@ -1,11 +1,11 @@
 .ProfileContainer {
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
-    margin: 5px auto;
+    /* overflow-y: scroll; */
+    /* margin: 5px auto; */
     padding: 20px;
-    border-radius: 8px;
-    background-color: #b6f7ff;
+    /* border-radius: 8px; */
+    background-color: #000000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     scrollbar-width: thin;
   }
@@ -14,7 +14,7 @@
     display: flex;
     margin-top: -7px;
     text-align: center;
-    color: #444;
+    color: #ccc;
   }
 
   /* ----------------------------Message Popup-------------- */
@@ -73,7 +73,7 @@
   .ProfileImageContainer {
     text-align: center;
     background: round;
-    width: 112em;
+    width: 50em;
     border-radius: 5px;
   }
   
@@ -142,6 +142,9 @@
     flex-direction: column;
     flex: 1 1 45%;
   }
+  .FormRow label{
+    color: #ccc;
+  }
   
   .inputFields {
     width: 100%;
@@ -197,7 +200,11 @@
   }
   
   .ResetPasswordSection h4 {
-    color: #444;
+    color: #ccc;
+  }
+
+  .ResetPasswordSection label{
+    color: #ccc;
   }
   
   .resetPasswordSaveButton {

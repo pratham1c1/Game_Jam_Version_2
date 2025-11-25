@@ -5,6 +5,7 @@ import styles from './GameDetails.module.css'; // Import the CSS module
 import CommonHeader from "../../components/PageHeader/CommonHeader";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import CommentTemplate from "../../components/CommentTemplate/commentTemplate";
+import DefaultImage from '../../check_image.jpg';
 
 function GameDetails(props) {
     const [gameInfo, setGameInfo] = useState(null);
@@ -14,12 +15,12 @@ function GameDetails(props) {
     const [gameFile, setGameFile] = useState(null);
     const [downloadUrl, setDownloadUrl] = useState(null);
     const location = useLocation();
-    const gameName = location?.state.gameName || {}; // props.gameName
+    const gameName = location?.state?.gameName ?? "CommonGame1"; // props.gameName
     const [gameDescription , setGameDescription] = useState("Loading ...");
     const [gameInstallInstruction , setGameInstallInstruction] = useState("Loading ...");
     // const gameName = "2nd Game";
-    const loggedInUserName = location?.state?.loggedInUserName || "PC";
-    const [userName, setUserName] = useState(null);
+    const loggedInUserName = location?.state?.loggedInUserName ?? "PC";
+    const [userName, setUserName] = useState("PC");
     const [comments, setComments] = useState([
         { id: 1735915550064, text: 'first comment' }]);
     const [isAddingComment, setIsAddingComment] = useState(false);
@@ -51,23 +52,26 @@ function GameDetails(props) {
             // Map and set gameCoverImage
             const gamesWithImageURL = response.data.gameCoverImage && response.data.gameCoverImage.data
                 ? `data:image/png;base64,${response.data.gameCoverImage.data}` // Use the base64 image if available
-                : `/no_image.png`; // Fallback to the public 'no_image.png'
+                : DefaultImage; // Fallback to the public 'no_image.png'
             setGameCoverImage(gamesWithImageURL);
 
             // Set other game images
             setGameFirstSs(response.data.gameFirstScreenshot && response.data.gameFirstScreenshot.data
                 ? `data:image/png;base64,${response.data.gameFirstScreenshot.data}`
-                : `/no_image.png`);
+                : DefaultImage);
 
             setGameSecondSs(response.data.gameSecondScreenshot && response.data.gameSecondScreenshot.data
                 ? `data:image/png;base64,${response.data.gameSecondScreenshot.data}`
-                : `/no_image.png`);
+                : DefaultImage);
             setUserName(response.data.userName);
             setGameDescription(response.data.gameDescription);
             setGameInstallInstruction(response.data.gameInstallInstruction);
         } catch (error) {
             console.error("Error fetching games:", error);
-            alert("Failed to load games.");
+            setGameCoverImage(DefaultImage);
+            setGameFirstSs(DefaultImage);
+            setGameSecondSs(DefaultImage);
+            // alert("Failed to load games.");
         }
     };
 
@@ -237,8 +241,8 @@ function GameDetails(props) {
                         </div>
                     </div>
                     <div className={styles.GameDetailsInfo}>
-                        <h3 className={styles.GameInfoH3}>Game Name: {gameInfo?.gameName || "Loading..."}</h3>
-                        <h3 className={styles.GameInfoH3} onClick={handlClickonUser}>Game Author: {userName || "Loading..."}</h3>
+                        <h3 className={styles.GameInfoH3}>Game Name: {gameInfo?.gameName || "Common Game 1"}</h3>
+                        <h3 className={styles.GameInfoH3} onClick={handlClickonUser}>Game Author: {userName || "PC"}</h3>
                         <div className={styles.ScrollableTextArea}>
                             <h3>Description:</h3>
                             <textarea
@@ -249,12 +253,12 @@ function GameDetails(props) {
                         <div className={styles.ScrollableTextArea}>
                             <h3>Install Instruction:</h3>
                             <textarea
-                                value={gameInfo?.gameInstallInstruction || "Download the game."}
+                                value={gameInfo?.gameInstallInstruction || "1. Download and Locate: Download the ZIP file from the source and locate it in your computer's Downloads folder\n2. Extract the Files: Right-click the ZIP file and select Extract All, Extract Here, or a similar option.\n3. Find the Executable: Navigate into the newly created, extracted folder. Look for the main game file, often an EXE file.\n4. Run the Game: Double-click the executable file to start the game."}
                                 readOnly
                             />
                         </div>
-                        <div className={styles.GameHeader} style={{ display: gameInfo?.gameFileId ? "flex" : "none" }}>
-                            <button onClick={() => fetchGameFile(`${gameInfo.gameName}`)}>Download</button>
+                        <div className={styles.GameHeader} style={{ display: gameInfo?.gameFileId ? "flex" : "flex" }}>
+                            <button onClick={() => fetchGameFile(`${gameInfo?.gameName ?? "Common Game 1"}`)}>Download</button>
                             <h3>{gameName}.zip</h3>
                         </div>
                     </div>
@@ -369,6 +373,7 @@ function GameDetails(props) {
                             </div>
                         </div>
                     </div>
+                                {/* Comments */}
                         <div className={styles.GameComments}>
                             <div className={styles.GameCommentsActionButtons}>
                                 <h2>Comments</h2>

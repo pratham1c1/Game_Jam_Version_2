@@ -6,8 +6,33 @@ import axios from "axios";
 import PopupForm from '../../components/PopupForm/PopupForm';
 import CommonHeader from "../../components/PageHeader/CommonHeader";
 import AddCardIcon from '@mui/icons-material/AddCard';
+import Tooltip from '@mui/material/Tooltip';
 
 function UserGames() {
+    const baseGame = {
+        gameImage: "no_image.png",
+        gameNameValue: "Common",
+        gameAuthorName: "PC",
+        // Note: We DO NOT include the setter functions here.
+        // They are props of the parent, not data in the 'games' array.
+    };
+    
+    // 2. Create the dummy array (e.g., 10 items)
+    const DUMMY_ARRAY_SIZE = 10;
+    
+    const dummyGamesData = Array.from({ length: DUMMY_ARRAY_SIZE }, (_, index) => ({
+        // Use the spread operator to include all base properties
+        ...baseGame,
+        // Add a unique identifier, which will be used for the React 'key'
+        gameId: index,
+        gameRating : (Math.floor(Math.random() * 41) + 10)/10,
+        gameLikeCount : Math.floor(Math.random() * (200 - 50 + 1)) + 50,
+        gameDownloadCount : Math.floor(Math.random() * (400 - 200 + 1)) + 200,
+        // OPTIONAL: Make the name dynamic for better differentiation
+        gameNameValue: `Common Game ${index + 1}`, 
+    }));
+
+
     const [games, setGames] = useState([]);
     const location = useLocation();
     const loggedInUserName = location?.state?.loggedInUserName || "PC";
@@ -102,6 +127,7 @@ function UserGames() {
         } catch (error) {
             console.error("Error fetching games:", error);
             alert("Failed to load games.");
+            setGames(dummyGamesData);
         }
         try{
             const userLikedGames = await axios.get(`http://localhost:8080/api/userGames/getUserLikedGame/${loggedInUserName}`);
@@ -220,11 +246,13 @@ function UserGames() {
                     </div>
                     <div className={styles.ActionButtons}>
                         <button className={styles.gameAddIconButton} style={{display:(loggedInUserName == userName)?"flex":"none"}}>
-                        <AddCardIcon 
-                            title="Add New Game"
-                            onClick={displayForm}
-                            sx={{fontSize:40}}
-                        />
+                        <Tooltip title="Add New Game">
+                            <AddCardIcon 
+                                title="Add New Game"
+                                onClick={displayForm}
+                                sx={{fontSize:40}}
+                            />
+                        </Tooltip>
                         </button>
                     </div>
                 </div>
@@ -234,7 +262,7 @@ function UserGames() {
                             <GameCards
                                     key={game.gameId}
                                     gameImage={game.gameCoverImageUrl}
-                                    gameNameValue={game.gameName}
+                                    gameNameValue={game.gameNameValue}
                                     gameAuthorName={userName}
                                     gameGenre = {game.gameGenre}
                                     gameDownloadCount = {game.gameDownloadCount}

@@ -8,6 +8,29 @@ import SideNav from "../../components/BrowseSideNav/SideNav";
 import CommonHeader from "../../components/PageHeader/CommonHeader";
 
 function BrowseGames(props) {
+    const baseGame = {
+        gameImage: "no_image.png",
+        gameNameValue: "Common",
+        gameAuthorName: "PC",
+        // Note: We DO NOT include the setter functions here.
+        // They are props of the parent, not data in the 'games' array.
+    };
+    
+    // 2. Create the dummy array (e.g., 10 items)
+    const DUMMY_ARRAY_SIZE = 10;
+    
+    const dummyGamesData = Array.from({ length: DUMMY_ARRAY_SIZE }, (_, index) => ({
+        // Use the spread operator to include all base properties
+        ...baseGame,
+        // Add a unique identifier, which will be used for the React 'key'
+        gameId: index,
+        gameRating : (Math.floor(Math.random() * 41) + 10)/10,
+        gameLikeCount : Math.floor(Math.random() * (200 - 50 + 1)) + 50,
+        gameDownloadCount : Math.floor(Math.random() * (400 - 200 + 1)) + 200,
+        // OPTIONAL: Make the name dynamic for better differentiation
+        gameNameValue: `Common Game ${index + 1}`, 
+    }));
+
     const [games, setGames] = useState([]);
     const location = useLocation();
     const loggedInUserName = props.loggedInUserName || "PC";
@@ -33,13 +56,13 @@ function BrowseGames(props) {
     const handleRedirect = () => {
         if (gameNameRedirFlag) {
             console.log("Redirecting to GamePage ...");
-            navigate("/GamePage", {
+            navigate("/GameDetailsPage", {
                 state: { gameName: `${gameNameRedirFlag}` , userName : `${userName}` , loggedInUserName:`${loggedInUserName}`}
             });
         }
         if(authorNameRedirFlag){
             console.log("Redirecting to Author Dashboard ...");
-            navigate("/DashboardPage" ,{
+            navigate("/UserGames" ,{
                 state:{userName:`${authorNameRedirFlag}`, loggedInUserName:`${loggedInUserName}`}
             });
         }
@@ -52,7 +75,7 @@ function BrowseGames(props) {
 
             if (!response.data) {
                 console.error("No games data found.");
-                setGames([]); // Set an empty array if no data is returned
+                setGames(dummyGamesData); // Set an empty array if no data is returned
                 return;
             }
 
@@ -68,7 +91,8 @@ function BrowseGames(props) {
 
             setGames(gamesWithImageURL); // Set processed data to state
         } catch (error) {
-            console.error("Error fetching games:", error);
+            console.error("Error fetching games:", dummyGamesData);
+            setGames(dummyGamesData);
             // alert("Failed to load games.");
         }
         try{
@@ -170,28 +194,28 @@ function BrowseGames(props) {
         console.log("Criteria : " , criteria);
         return games.filter((game) => {
             // Filter by gameGenre if criteria provided
-            if (criteria.gameGenre.length > 0 && !criteria.gameGenre.some((genre) => game.gameGenre.includes(genre))) {
-                return false;
-            }
+            // if (criteria.gameGenre.length > 0 && !criteria.gameGenre.some((genre) => game.gameGenre.includes(genre))) {
+            //     return false;
+            // }
             // Filter by gamePlatform if criteria provided
             if (criteria.gamePlatform.length > 0 && !criteria.gamePlatform.some((platform) => game.gamePlatform.includes(platform))) {
                 return false;
             }
             // Filter by maxPrice
             // console.log("The gamePrice : " , game.gamePrice , " & maxPrice : " , criteria.maxPrice);
-            if (criteria.maxPrice && game.gamePrice > criteria.maxPrice) {
-                return false;
-            }
+            // if (criteria.maxPrice && game.gamePrice > criteria.maxPrice) {
+            //     return false;
+            // }
             // Filter by beforeDate
-            if (criteria.beforeDate && !(criteria.beforeDate && new Date((game.gameCreateDate).toString()) >= criteria.beforeDate)) {
-                return false;
-            }
+            // if (criteria.beforeDate && !(criteria.beforeDate && new Date((game.gameCreateDate).toString()) >= criteria.beforeDate)) {
+            //     return false;
+            // }
             // Filter by searchQuery
             if (criteria.searchQuery && !(
-                game.gameName.toLowerCase().includes(criteria.searchQuery.toLowerCase()) ||
-                game.userName.toLowerCase().includes(criteria.searchQuery.toLowerCase()) ||
-                game.gamePlatform.some((platform) => platform.toLowerCase().includes(criteria.searchQuery.toLowerCase())) ||
-                game.gameGenre.some((genre) => genre.toLowerCase().includes(criteria.searchQuery.toLowerCase()))
+                game.gameNameValue.toLowerCase().includes(criteria.searchQuery.toLowerCase()) ||
+                game.gameAuthorName.toLowerCase().includes(criteria.searchQuery.toLowerCase()) //||
+                //game.gamePlatform.some((platform) => platform.toLowerCase().includes(criteria.searchQuery.toLowerCase())) //||
+                // game.gameGenre.some((genre) => genre.toLowerCase().includes(criteria.searchQuery.toLowerCase()))
             )) {
                 return false;
             }
@@ -257,9 +281,10 @@ function BrowseGames(props) {
                             filterGames.map((game) => (
                                 <GameCards
                                     key={game.gameId}
+                                    gameId = {game.gameId}
                                     gameImage={game.gameCoverImageUrl}
-                                    gameNameValue={game.gameName}
-                                    gameAuthorName={game.userName}
+                                    gameNameValue={game.gameNameValue}
+                                    gameAuthorName={game.gameAuthorName} //game.userName
                                     gameGenre = {game.gameGenre}
                                     gameDownloadCount = {game.gameDownloadCount}
                                     // gameRating = {Math.round((game.gameRatingCount/game.gameRaters) * 1e1) / 1e1}
@@ -271,6 +296,7 @@ function BrowseGames(props) {
                                     savedGameFlagDisplay = {loggedInUserName != game.userName}
                                     setGameNameRedirFlag={setGameNameRedirFlag}
                                     setAuthorNameRedirFlag={setAuthorNameRedirFlag}
+                                    initialIsLiked={false}
                                     DashboardFlag={false}
                                     cancleFlag={false}
                                 />

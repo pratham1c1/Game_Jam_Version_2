@@ -1,13 +1,25 @@
+/* Background Colors */
+.featuredGamesDiv {
+  background-color: black;
+}
+
+.OtherGames{
+  background-color: black;
+}
+
+/* ---------------------------------------------------------------------------- */
+
 .MainDiv {
     position: relative;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
     margin: 0;
     padding: 0;
     max-width: 100%;
     max-height: 100%;
     display: flex;
     /* overflow-y: scroll; */
+    /* overflow-x: scroll; */
 }
 
 .SearchSortFields {
@@ -35,6 +47,11 @@
     }
 }
 /* -----------------SearchIcon------------ */
+
+/* .SearchFormDiv{
+  position: relative;
+  z-index: 1;
+} */
 
 .SearchField {
     width: 380px;
@@ -81,7 +98,7 @@ button {
 .Games {
     background-color: bisque;
     width: 100%;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(57, 53, 53);
     margin: 0;
     padding: 0;
     max-width: 100%;
@@ -101,8 +118,9 @@ button {
 .GamesCollapsed{
     background-color: bisque;
     width: 100%;
+    /* width: 1264px; */
     height: 100%;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(0, 0, 0);
     padding: 0;
     max-width: 109%;
     max-height: 100%;
@@ -111,6 +129,7 @@ button {
     /* overflow-y: scroll; */
     flex-direction: column;
     /* flex-wrap: wrap; */
+    padding-top: 24px;
 }
 
 /* ----------------------------------------- */
@@ -134,16 +153,19 @@ button {
     background-color: rebeccapurple;
     width: 100%;
     position: relative;
-    left: -30px;
+    /* left: -30px; */
+    left : 0px;
 }
 
 /* -------------------------------- */
 /* -----------new Release Games ------------- */
 .newReleaseGamesDiv{
-    width: 100%;
+    /* width: 40%; */
+    width: 1264px;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* overflow-x: hidden; */
 }
 
 .newReleaseGames{
@@ -151,8 +173,27 @@ button {
     display: flex;
     flex-wrap: nowrap;
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: hidden;
     height: 500px;
+}
+
+.newReleaseGames::-webkit-scrollbar {
+  width: 10px; /* For vertical scrollbar */
+  height: 10px; /* For horizontal scrollbar */
+}
+
+.newReleaseGames::-webkit-scrollbar-track {
+  background: #235ab3; /* Light background */
+  border-radius: 10px; /* Optional: Give the track rounded corners too */
+}
+
+.newReleaseGames::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle, rgb(220, 203, 238) 12%, #8504e2 100%);; /* Darker color for the thumb */
+  /* This is the key line for rounded corners: */
+  border-radius: 6px; 
+  
+  /* Optional: Add padding around the thumb using border */
+  border: 3px solid #da245800; 
 }
 
 .newReleaseGamesDivActionButton button{
@@ -161,22 +202,24 @@ button {
 /* -----------------SearchGamesDiv---------------------------------- */
 
 .searchGamesDivBefore{
-  background-color: #ff8686;
+  background-color: black;
   width: 100%;
-  min-height: 0px;
+  height: 0px;
   border-radius: 22px;
-  transition: min-height 1.5s ease-in-out;
+  transition: height 1.5s ease-in-out;
 }
 
 .searchGamesDivAfter{
-  background-color: #ff8686;
+  background-color: black;
   width: 100%;
-  min-height: 55px;
-  border-radius: 22px;
-  transition: min-height 1.5s ease-in-out;
+  height: 55px;
+  /* border-radius: 22px; */
+  transition: height 1.5s ease-in-out;
+  color: #b630ff;
 }
 
 .searchGamesDivInput{
+  color : #c13eff;
   width: 97%;
   height: 55px;
   font-size: 15px;
@@ -184,12 +227,13 @@ button {
   padding-left: 31px;
   margin-left: 20px;
   border: none;
+  background-color: #1e1e1e;
 }
 
 .searchIconBefore{
   position: absolute;
-  top: 17px;
-  right: 1477px;
+  top: 39px;
+  right: 1219px;
   font-size: 20px;
   color: #e30000;
   cursor: pointer;
@@ -199,7 +243,7 @@ button {
 
 .searchIconAfter{
   position: absolute;
-  top: 17px;
+  top: 19px;
   right: 40px;
   font-size: 20px;
   color: #e30000;
@@ -211,7 +255,7 @@ button {
 /* ------------------------------------------- */
 .OtherGames{
     width: 100%;
-    background-color: #7b89a4;
+    /* background-color: #7b89a4; */
     display: flex;
     flex-direction: column;
 }
@@ -228,9 +272,9 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f9f9f9; /* Light gray */
+    /* background-color: #88ccf6; Light gray */
     color: black;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
   }
@@ -241,7 +285,67 @@ button {
     gap: 15px;
     flex-direction: row; /* Ensure horizontal alignment */
     width: 100%;
+    overflow: hidden;
+    position: relative;
   }
+
+  /* Define the slide-out animation (moves content left and fades) */
+/* --- 1. Slide Out (To the Left, for 'Next') --- */
+@keyframes slideOutLeft {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0; }
+}
+
+/* --- 2. Slide Out (To the Right, for 'Previous') --- */
+@keyframes slideOutRight {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; } /* Key Change: Moves to +100% */
+}
+
+/* --- 3. Slide In (From Left, for 'Previous' button) --- */
+@keyframes slideInLeft {
+  0% { transform: translateX(-100%); opacity: 0; } /* Starts off-screen left */
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* --- 4. Slide In (From Right, for 'Next' button) --- */
+@keyframes slideInRight {
+  0% { transform: translateX(100%); opacity: 0; } /* Starts off-screen right */
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+
+/* --- CSS Classes to Apply --- */
+.slide-out-left {
+  display: flex;
+  z-index: 1;
+  animation: slideOutLeft 0.3s linear forwards;
+  
+}
+
+.slide-out-right {
+  display: flex;
+  z-index: 1;
+  animation: slideOutRight 0.3s linear forwards;
+}
+
+.slide-in-left {
+  display: flex;
+  z-index: 1;
+  animation: slideInLeft 0.3s linear forwards;
+}
+
+.slide-in-right {
+  display: flex;
+  z-index: 1;
+  animation: slideInRight 0.3s linear forwards;
+}
+
+.slideEffectDefault{
+  display: flex;
+  z-index: 1;
+}
+/* ---------------------------------------------------------- */
   
   /* Game Cover Image */
   .featuredGamesImageDiv {
@@ -270,6 +374,7 @@ button {
     justify-content: space-between;
     padding: 20px;
     background-color: #fefefe; /* White */
+    background: radial-gradient(circle, rgb(255 255 255) 12%, #b08af2 100%);
     border-radius: 10px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -334,5 +439,3 @@ button {
     background-color: #0056b3; /* Darker blue */
     transform: scale(1.1);
   }
-  
-  

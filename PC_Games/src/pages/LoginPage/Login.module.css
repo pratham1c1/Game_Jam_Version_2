@@ -1,0 +1,103 @@
+body{
+    display: grid;
+}
+
+.loginPage{
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 16px 18px;
+    display: grid;
+    place-items: center;
+}
+
+.loginContainer{
+    margin: 5px 5px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-evenly;
+    width: 800px;
+    height: 400px;
+}
+
+.loginPageHeader{
+    line-height: 0.5;
+    margin-top: 40px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.loginPageHeader h1 {
+    margin-bottom: -5px;
+}
+
+.loginImage{
+    width: 335px;
+    background-color: rgb(141, 185, 141);
+}
+
+.loginForm{
+    background-color:white;
+    border: 3px solid #ffc29c;
+    width: 430px;
+    display: grid;
+    place-items: center;
+    align-items: center;
+}
+
+.formLable{
+    width: 81%;
+    margin-bottom: -15px;
+}
+
+.formInput{
+    width: 80%;
+    border: none;
+    border-radius: 15px;
+    height: 45px;
+    padding-left: 20px;
+    background-color: whitesmoke;
+}
+
+.formInput:focus-visible{
+    border-color: green;
+}
+
+.formLogin{
+    width: 110px;
+    height: 46px;
+    font-size: 18px;
+    background-color: #198fcb;
+    color: white;
+}
+
+.formLogin:hover{
+    background-color: #015985;
+}
+
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.rmField{
+    display: flex;
+    place-items: flex-start;
+    margin-bottom: 0px;
+
+}
+.pdText{
+    display: flex;
+    align-items: center;
+    width: 380px;
+    justify-content: space-between;
+    
+}
+
+.siteLogo{
+    height: 7em;
+      padding: 0.5em;
+      will-change: filter;
+      transition: filter 300ms;
+      position: absolute;
+  }
