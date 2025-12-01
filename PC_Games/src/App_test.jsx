@@ -25,22 +25,20 @@ function App_test() {
   return (
     <>
       <div className='AppPage'>
-        <HashRouter>
         <Router>
           <Routes>
-            {/* <Route path="/BrowseGames" element={<BrowseGames />} /> */}
-            {/* <Route path="/" element={<HomePage />} /> */}
-            {/* <Route path="/UserProfile" element={<UserProfile />} /> */}
-            {/* <Route path="/UserGames" element={<UserGames />} /> */}
-            {/* <Route path="/GameDetailsPage" element={<GameDetails />} /> */}
-            {/* <Route path="/Login" element={<Login />} />  */}
-            {/* <Route path="/SignUp" element={<SignUp />} />   */}
+            <Route path="/BrowseGames" element={<BrowseGames />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/UserProfile" element={<UserProfile />} />
+            <Route path="/UserGames" element={<UserGames />} />
+            <Route path="/GameDetailsPage" element={<GameDetails />} />
+            <Route path="/Login" element={<Login />} /> 
+            <Route path="/SignUp" element={<SignUp />} /> 
 
-            <Route path="/" element={<HomePage />} /> 
+            {/* <Route path="/" element={<HomePage />} />  */}
 
           </Routes>
         </Router>
-        </HashRouter>
       </div>
     </>
   )
