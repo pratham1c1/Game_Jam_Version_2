@@ -25,6 +25,7 @@ function App_test() {
   return (
     <>
       <div className='AppPage'>
+        <HashRouter>
         <Router>
           <Routes>
             {/* <Route path="/BrowseGames" element={<BrowseGames />} /> */}
@@ -39,6 +40,7 @@ function App_test() {
 
           </Routes>
         </Router>
+        </HashRouter>
       </div>
     </>
   )
