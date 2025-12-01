@@ -160,12 +160,13 @@ button {
 /* -------------------------------- */
 /* -----------new Release Games ------------- */
 .newReleaseGamesDiv{
-    /* width: 40%; */
-    width: 1264px;
+    width: 70%;
+    /* width: 1264px; */
     display: flex;
     align-items: center;
     justify-content: center;
     /* overflow-x: hidden; */
+    max-width: 1000px;
 }
 
 .newReleaseGames{
@@ -173,7 +174,7 @@ button {
     display: flex;
     flex-wrap: nowrap;
     overflow-y: hidden;
-    overflow-x: hidden;
+    overflow-x: scroll;
     height: 500px;
 }
 
