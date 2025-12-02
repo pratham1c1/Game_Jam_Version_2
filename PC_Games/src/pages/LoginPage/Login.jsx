@@ -13,7 +13,7 @@ function Login() {
 
     const LoginAction = () => {
         console.log("Logging in ...");
-        navigate("/", {state : {}});
+        navigate("/HomePage", {state : {}});
     }
 
     const RegisterClick = () => {
@@ -24,7 +24,7 @@ function Login() {
     return (
         <>
         <div>
-              <img className="siteLogo" src={siteLogo} />
+              <img className={styles.siteLogo} src={siteLogo} />
         </div>
         <div className={styles.loginPage}>
             <div className={styles.loginPageHeader}>
@@ -32,21 +32,21 @@ function Login() {
                 <h2>Log in</h2>
             </div>
             
-            <div className="loginContainer">
-                <img className="loginImage" src={loginImage}></img>
-                <div className="loginForm">
-                        <label htmlFor="uname" className='formLable'><b>Username</b></label>
-                        <input type="text" className='formInput' placeholder="Enter Username" name="uname" required />
-                        <label htmlFor="psw" className='formLable'><b>Password</b></label>
-                        <input type="password" className='formInput' placeholder="Enter Password" name="psw" required />
-                        <div className='pdText'>
-                        <label className='rmField'>
+            <div className={styles.loginContainer}>
+                <img className={styles.loginImage} src={loginImage}></img>
+                <div className={styles.loginForm}>
+                        <label htmlFor="uname" className={styles.formLable}><b>Username</b></label>
+                        <input type="text" className={styles.formInput} placeholder="Enter Username" name="uname" required />
+                        <label htmlFor="psw" className={styles.formLable}><b>Password</b></label>
+                        <input type="password" className={styles.formInput} placeholder="Enter Password" name="psw" required />
+                        <div className={styles.pdText}>
+                        <label className={styles.rmField}>
                         <input type="checkbox" defaultChecked onClick={RememberMe} />Remember me
                         </label> 
-                        <span className="psw">Forgot <a href="#">password?</a></span>
-                        <span className="psw">Want to <a href="#" style={{color: 'green' , fontWeight : 'bold'}} onClick={RegisterClick}>Register?</a></span>
+                        <span className={styles.psw}>Forgot <a href="#">password?</a></span>
+                        <span className={styles.psw}>Want to <a href="#" style={{color: 'green' , fontWeight : 'bold'}} onClick={RegisterClick}>Register?</a></span>
                         </div>
-                        <button type="submit" className='formLogin' onClick={LoginAction}>Login</button>
+                        <button type="submit" className={styles.formLogin} onClick={LoginAction}>Login</button>
                         
                 </div>
             </div>

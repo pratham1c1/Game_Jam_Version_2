@@ -4,10 +4,11 @@ import './App.css'
 import UserGames from './pages/ProfileGames/UserGames'
 import GameDetails from './pages/GameDetails/GameDetails'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from './components/PageHeader/Header'
-import CommonHeader from './components/PageHeader/CommonHeader'
 import BrowseGames from './pages/BrowsePage/BrowseGames'
 import UserProfile from './pages/ProfilePage/UserProfile'
+import HomePage from './pages/HomePage/HomePage'
+import SignUp from './pages/SignUpPage/SignUP'
+import Login from './pages/LoginPage/Login'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,11 +18,13 @@ function App() {
       <div className='AppPage'>
         <Router>
           <Routes>
-            <Route path="/" element={<BrowseGames />} />
-            <Route path="/DashboardPage" element={<UserGames />} />
-            <Route path="/GamePage" element={<GameDetails />} />
-            <Route path="/BrowsePage" element={<BrowseGames />} />
-            <Route path="/profilePage" element={<UserProfile/>} />
+            <Route path="/" element={<Login />} /> 
+            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/BrowseGames" element={<BrowseGames />} />
+            <Route path="/HomePage" element={<HomePage />} />
+            <Route path="/UserProfile" element={<UserProfile />} />
+            <Route path="/UserGames" element={<UserGames />} />
+            <Route path="/GameDetailsPage" element={<GameDetails />} />
           </Routes>
         </Router>
       </div>

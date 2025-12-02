@@ -27,15 +27,15 @@ function App_test() {
       <div className='AppPage'>
         <Router>
           <Routes>
+            {/* <Route path="/" element={<Login />} /> 
+            <Route path="/SignUp" element={<SignUp />} />
             <Route path="/BrowseGames" element={<BrowseGames />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/HomePage" element={<HomePage />} />
             <Route path="/UserProfile" element={<UserProfile />} />
             <Route path="/UserGames" element={<UserGames />} />
-            <Route path="/GameDetailsPage" element={<GameDetails />} />
-            <Route path="/Login" element={<Login />} /> 
-            <Route path="/SignUp" element={<SignUp />} /> 
+            <Route path="/GameDetailsPage" element={<GameDetails />} /> */}
 
-            {/* <Route path="/" element={<HomePage />} />  */}
+            <Route path="/" element={<HomePage />} />
 
           </Routes>
         </Router>

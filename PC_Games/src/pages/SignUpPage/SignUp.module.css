@@ -20,6 +20,17 @@ body{
     height: 400px;
 }
 
+.loginPageHeader{
+    line-height: 0.5;
+    margin-top: 40px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.loginPageHeader h1 {
+    margin-bottom: -5px;
+}
+
 .loginImage{
     width: 335px;
     background-color: rgb(141, 185, 141);

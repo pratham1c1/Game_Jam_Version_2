@@ -114,7 +114,7 @@ function GameDetails(props) {
     };
 
     const handlClickonUser = (event) => {
-        navigate("/DashboardPage", {
+        navigate("/UserGames", {
             state: { userName: userName }
         });
     };

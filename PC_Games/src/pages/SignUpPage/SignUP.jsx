@@ -14,7 +14,7 @@ function SignUp() {
     const SignUp = (e) => {
         console.log("Clicked on SignUP");
         console.log("Redirecting to Login ...");
-            navigate("/Login", {
+            navigate("/", {
                 state: {}
             });
         

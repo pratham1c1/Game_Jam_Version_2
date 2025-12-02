@@ -24,10 +24,15 @@ function CommonHeader(props) {
         navigate("/BrowseGames");
     }
 
+    const handleLogout = () => {
+        console.log("Logging out");
+        navigate("/");
+    }
+
     const handleClickDashboard = () =>{
         console.log("Navigating to own Dashboard page ...");
         // navigate("/DashboardPage",{
-        navigate("/",{                  // To got to HomePage
+        navigate("/HomePage",{                  // To got to HomePage
             state:{userName:loggedInUserName , loggedInUserName:loggedInUserName}
         });
     }
@@ -84,7 +89,7 @@ function CommonHeader(props) {
                                 <div className={styles.dropdown}>
                                     <a onClick={handleClickProfile}>Profile</a>
                                     <a href="#Settings">Settings</a>
-                                    <a href="#Logout">Log Out</a>
+                                    <a href="" onClick={handleLogout}>Log Out</a>
                                 </div>
                             )}
                         </div>

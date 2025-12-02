@@ -67,7 +67,7 @@ function HomePage(props) {
         }
         if(authorNameRedirFlag){
             console.log("Redirecting to Author Dashboard ...");
-            navigate("/DashboardPage" ,{
+            navigate("/UserGames" ,{
                 state:{userName:`${authorNameRedirFlag}`, loggedInUserName:`${loggedInUserName}`}
             });
         }
